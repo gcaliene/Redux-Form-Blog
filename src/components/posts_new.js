@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
-  renderTitleField(field) {
+  renderField(field) {
     //{...field.input is just a fancyand concise way to say onchange={field.input.onchange}, onHover={field.input.onHover}
     return (
-      <div>
-        <input type="text" {...field.input} />
+      <div className="form-group">
+        <label htmlFor="">{field.label}</label>
+        <input className="form-control" type="text" {...field.input} />
       </div>
     );
   }
@@ -14,7 +15,17 @@ class PostsNew extends Component {
   render() {
     return (
       <form>
-        <Field name="title" component={this.renderTitleField} />
+        <Field label="Title" name="title" component={this.renderField} />
+        <Field
+          label="Categories"
+          name="categories"
+          component={this.renderField}
+        />
+        <Field
+          label="Post Content"
+          name="content"
+          component={this.renderField}
+        />
       </form>
     );
   }
