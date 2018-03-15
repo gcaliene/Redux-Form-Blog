@@ -8,6 +8,7 @@ class PostsNew extends Component {
       <div className="form-group">
         <label htmlFor="">{field.label}</label>
         <input className="form-control" type="text" {...field.input} />
+        {field.meta.error}
       </div>
     );
   }
@@ -36,6 +37,7 @@ const validate = values => {
 
   if (!values.title || values.title.length < 3) {
     errors.title = 'Enter a title that is atleast 3 characters long!';
+    //the name property on the <Field /> component connects the errors.
   }
   if (!values.categories) {
     errors.categories = 'Enter some categories!';
