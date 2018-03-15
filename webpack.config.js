@@ -20,11 +20,11 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   devServer: {
+    historyApiFallback: true,
+    contentBase: './',
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
-    },
-    historyApiFallback: true,
-    contentBase: './'
+    }
   }
 };
