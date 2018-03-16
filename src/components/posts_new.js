@@ -1,22 +1,35 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
 class PostsNew extends Component {
   renderField(field) {
+    const { meta: { touched, error } } = field;
+    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
     //{...field.input is just a fancyand concise way to say onchange={field.input.onchange}, onHover={field.input.onHover}
     return (
-      <div className="form-group">
+      <div className={className}>
         <label htmlFor="">{field.label}</label>
         <input className="form-control" type="text" {...field.input} />
-        {field.meta.error}
+        <div className="text-help">{touched ? error : ''}</div>
       </div>
     );
   }
 
+  onSubmit(values) {
+    console.log(values);
+  }
+
   render() {
+    const { handleSubmit } = this.props;
+
     return (
-      <form>
-        <Field label="Title" name="title" component={this.renderField} />
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <Field
+          label="Title for Post"
+          name="title"
+          component={this.renderField}
+        />
         <Field
           label="Categories"
           name="categories"
@@ -27,6 +40,12 @@ class PostsNew extends Component {
           name="content"
           component={this.renderField}
         />
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+        <Link to="/" className="btn btn-danger">
+          Cancel
+        </Link>
       </form>
     );
   }
