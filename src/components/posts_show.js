@@ -9,7 +9,21 @@ class PostsShow extends Component {
   }
 
   render() {
-    return <div>Post Show!</div>;
+    const { post } = this.props;
+
+    //since component will render before componentDidMount nothing will show and will throw an console.error
+    //we need a check to see if the data is there! this will happen often.
+    if (!post) {
+      return <div>Loading...</div>;
+    }
+
+    return (
+      <div>
+        <h3>{post.title}</h3>
+        <h6>Categories: {post.categories}</h6>
+        <p>{post.content}</p>
+      </div>
+    );
   }
 }
 
