@@ -6,7 +6,6 @@ import { fetchPosts } from '../actions';
 
 class PostsIndex extends Component {
   componentDidMount() {
-    // console.log('hello');
     this.props.fetchPosts();
   }
 
@@ -22,7 +21,6 @@ class PostsIndex extends Component {
   }
 
   render() {
-    // console.log(this.props.posts);
     return (
       <div>
         <div className="text-xs-right">
